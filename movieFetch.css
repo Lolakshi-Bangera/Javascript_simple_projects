@@ -1,0 +1,49 @@
+#home {
+    padding-top: 125px;
+    text-align: center;
+    color: aliceblue;
+
+    height: 400px;
+}
+
+#titleData {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 850px;
+    margin: 20px;
+    /* height:1500px; */
+}
+
+* 
+{
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+#pad { 
+    padding: 5px
+}
+
+.card-body {
+    background-color: white;
+}
+
+.card {
+    /* box-shadow: inset; */
+    text-align: center;
+    font-size: small;
+}
+
+body {
+    background-color: hotpink;
+}
+.btn{
+   width: 160px; ;
+}
+#search{
+    border:none;
+    width: 400px;
+}

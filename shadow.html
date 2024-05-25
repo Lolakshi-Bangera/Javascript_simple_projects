@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shadow DOM Example</title>
+</head>
+<body>
+
+  <!-- Define a custom element with shadow DOM -->
+  <script>
+    // Create a new custom element named 'custom-box'
+    class CustomBox extends HTMLElement {
+      constructor() {
+        super();
+        
+        // Create a shadow DOM root and attach it to 'custom-box'
+        const shadow = this.attachShadow({ mode: 'open' });
+        
+        // Create a div inside the shadow DOM
+        const wrapper = document.createElement('div');
+        wrapper.setAttribute('class', 'wrapper');
+        wrapper.textContent = 'This content is inside the shadow DOM!';
+        
+        // Apply some styles to the div
+        const style = document.createElement('style');
+        style.textContent = `
+          .wrapper {
+            border: 2px solid #aaa;
+            padding: 20px;
+            background-color: #f0f0f0;
+          }
+        `;
+        
+        // Append the created elements to the shadow DOM
+        shadow.appendChild(style);
+        shadow.appendChild(wrapper);
+      }
+    }
+    
+    // Define the custom element 'custom-box'
+    customElements.define('custom-box', CustomBox);
+  </script>
+
+  <!-- Use the custom element 'custom-box' -->
+  <h2>Shadow DOM Example</h2>
+  <custom-box></custom-box>
+
+</body>
+</html>

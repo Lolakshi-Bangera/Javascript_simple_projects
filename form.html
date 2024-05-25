@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Submission</title>
+    <script>
+        function submitForm(event) {
+            console.log(event)
+            e.preventDefault(); // Prevents the default form submission behavior
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Perform validation if needed
+            console.log("event",event)
+            // Simulate form submission (replace this with actual submission logic)
+            // For demonstration purposes, display a confirmation message
+            const confirmationMessage = `Thank you, ${name}! Your message "${message}" has been received.`;
+            document.getElementById('confirmation').innerText = confirmationMessage;
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="submitForm(event)">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="4" required></textarea><br><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+    
+    <!-- Display confirmation message after form submission -->
+    <p id="confirmation"></p>
+</body>
+</html>

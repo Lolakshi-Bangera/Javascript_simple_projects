@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Age Input Validation</title>
+    <style>
+        .error-message {
+            color: red;
+            font-size: 14px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <label for="age">Enter your age (must be 18 or older):</label>
+    <input type="number" id="age" min="0" oninput="validateAge(event)">
+    <div class="error-message" id="ageError">Please enter a valid age (18 or older & younger than 125).</div>
+    
+    <script>
+        function validateAge(event) {
+            const input = event.target;
+            const errorMessage = document.getElementById('ageError');
+
+            if (input.value < 0 || input.value < 18||input.value>125) {
+                // input.value = ''; // Clear the input if negative or below 18
+                errorMessage.style.display = 'block'; // Show error message
+            } else {
+                errorMessage.style.display = 'none'; // Hide error message if valid
+            }
+        }
+    </script>
+</body>
+</html>

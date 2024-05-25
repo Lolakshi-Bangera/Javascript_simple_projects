@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Types of Form Elements</title>
+    <script>
+        function submitForm(event) {
+            event.preventDefault(); // Prevents the default form submission behavior
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const age = document.getElementById('age').value;
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const country = document.getElementById('country').value;
+            const subscribe = document.getElementById('subscribe').checked;
+            const comments = document.getElementById('comments').value;
+            
+            // Form a confirmation message
+            const confirmationMessage = `
+                Name: ${name}
+                Email: ${email}
+                Age: ${age}
+                Gender: ${gender}
+                Country: ${country}
+                Subscribe to newsletter: ${subscribe ? 'Yes' : 'No'}
+                Comments: ${comments}
+            `;
+            
+            // Display a confirmation dialogue box with the form data
+            if (confirm("Please confirm the following details:\n" + confirmationMessage)) {
+                // Replace this with actual submission logic
+                alert('Form submitted successfully!');
+            } else {
+                // Handle cancellation or modify data
+                alert('Form submission canceled!');
+            }
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="submitForm(event)">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br><br>
+        
+        <label>Gender:</label>
+        <input type="radio" id="male" name="gender" value="Male">
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="Female">
+        <label for="female">Female</label><br><br>
+        
+        <label for="country">Country:</label>
+        <select id="country" name="country">
+            <option value="USA">USA</option>
+            <option value="Canada">Canada</option>
+            <option value="UK">UK</option>
+            <option value="Australia">Australia</option>
+        </select><br><br>
+        
+        <input type="checkbox" id="subscribe" name="subscribe">
+        <label for="subscribe">Subscribe to newsletter</label><br><br>
+        
+        <label for="comments">Comments:</label><br>
+        <textarea id="comments" name="comments" rows="4"></textarea><br><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Guessing Game</title>
+</head>
+<body>
+  <h1>Guessing Game</h1>
+  <p>Guess a number between 1 and 10:</p>
+  <input type="text" id="guessField">
+  <button onclick="checkGuess()">Submit Guess</button>
+  <p id="message"></p>
+
+  <script>
+    // Generate a random number between 1 and 10
+    const randomNumber = Math.floor(Math.random() * 10) + 1;
+    let attempts = 3;
+
+    function checkGuess() {
+      const guess = parseInt(document.getElementById('guessField').value);
+      const messageElement = document.getElementById('message');
+
+      if (guess === randomNumber) {
+        messageElement.textContent = `Congratulations! You guessed the correct number: ${randomNumber}`;
+     
+      } else {
+        attempts--;
+        if (attempts === 0) {
+          messageElement.textContent = `Sorry, you've run out of attempts. The number was ${randomNumber}.`;
+          document.getElementById('guessField').disabled = true;
+          document.querySelector('button').disabled = true;
+          
+        } else {
+          const hint = guess < randomNumber ? 'higher' : 'lower';
+          messageElement.textContent = `Incorrect! Try again. You have ${attempts} attempts left. Try a ${hint} number.`;
+        }
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Types of Form Elements</title>
+    
+    <style>
+        #confirmation {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            width: 80%;
+            text-align: center;
+            display: none;
+        }
+        #closeBtn {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            margin-top: 5px;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form onsubmit="submitForm(event)">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <!-- <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br><br> -->
+        <label for="age">Enter your age (must be 18 or older ):</label>
+        <input type="number" id="age" min="0" oninput="validateAge(event)">
+        <div class="error-message" id="ageError">Please enter a valid age (18 or older and younger than 125).</div><br><br>
+
+        <label >Gender:</label>
+        <input type="radio" id="male" name="gender" value="Male">
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="Female">
+        <label for="female">Female</label><br><br>
+        
+        <label for="country">Country:</label>
+        <select id="country" name="country">
+            <option value="">Select...</option>
+            <option value="USA">USA</option>
+            <option value="Canada">Canada</option>
+            <option value="UK">UK</option>
+            <option value="Australia">Australia</option>
+        </select><br><br>
+        <div class="error-message" id="countryError">Please select a country.</div><br>
+        <input type="checkbox" id="subscribe" name="subscribe">
+        <label for="subscribe">Subscribe to newsletter</label><br><br>
+        
+        <label for="comments">Comments:</label><br>
+        <textarea id="comments" name="comments" rows="4"></textarea><br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- Confirmation message display at the bottom -->
+    <div id="confirmation">
+        <span id="confirmationText"></span>
+        <div id="closeBtn" >Close</div>
+    </div>
+    <script>
+        function submitForm(event) {
+            event.preventDefault(); // Prevents the default form submission behavior
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const age = document.getElementById('age').value;
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const country = document.getElementById('country').value;
+            const subscribe = document.getElementById('subscribe').checked;
+            const comments = document.getElementById('comments').value;
+            if (country === '') {
+                countryError.style.display = 'block'; // Show error message if empty selection
+            } else {
+                countryError.style.display = 'none'; // Hide error message if selection is made
+                // Continue with form submission logic if needed
+                 // Form a confirmation message
+            const confirmationMessage = `
+                Name: ${name}
+                Email: ${email}
+                Age: ${age}
+                Gender: ${gender}
+                Country: ${country}
+                Subscribe to newsletter: ${subscribe ? 'Yes' : 'No'}
+                Comments: ${comments}
+            `;
+            
+             // Display the confirmation message at the bottom
+             document.getElementById('confirmationText').innerText = "Please confirm the following details:\n" + confirmationMessage;
+            document.getElementById('confirmation').style.display = 'block';
+            }
+           
+        }
+         // Close button functionality
+         document.getElementById('closeBtn').addEventListener('click', function() {
+            document.getElementById('confirmation').style.display = 'none';
+        });
+        function validateAge(event) {
+            const input = event.target;
+            const errorMessage = document.getElementById('ageError');
+
+            if (input.value < 0 || input.value < 18||input.value>125) {
+                // input.value = ''; // Clear the input if negative or below 18
+                errorMessage.style.display = 'block'; // Show error message
+            } else {
+                errorMessage.style.display = 'none'; // Hide error message if valid
+            }
+        }
+    </script> 
+</body>
+</html>
